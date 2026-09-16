@@ -1,0 +1,10 @@
+.exe
+.zip
+_pyi/
+_build/
+dist/
+__pycache__/
+*.log
+*.png
+.idea/
+.vscode/
