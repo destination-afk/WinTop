@@ -1,4 +1,3 @@
-[Uploading README.md…]()
 # WinTop —— Windows 窗口一键置顶工具（霓虹发光边框）
 
 按快捷键把「当前窗口」一键置顶，窗口四周出现**点击穿透的霓虹发光边框**；
@@ -104,35 +103,26 @@
 | 多显示器 / 缩放屏幕 | 已做 DPI 感知；如果边框在副屏错位，把 `fps` 保持 30 并更新到最新代码 |
 | 怎么彻底退出 | `Ctrl+Alt+Q` 或托盘右键退出，会自动把所有被钉住的窗口恢复原层级 |
 
-## 六、C# 进阶版（csharp 目录）
+## 六、发布版说明
 
-与 Python 版功能一致，但用 **分层窗口 + GDI+ 逐像素 alpha（UpdateLayeredWindow）** 实现光晕，
-抗锯齿更细腻，托盘常驻更"正规军"。需要 .NET SDK 8.0+：
-
-```bat
-cd csharp
-dotnet run -c Release
-```
-
-> 注意：本机当前未安装 .NET SDK（只有运行时），该版本源码未经本机编译验证；
-> 若编译报错多半是命名空间/类型的小问题，按报错微调即可。日常使用推荐 Python 版。
+本仓库以 **Python 单文件版**为唯一发行版（`win_topmost.py` + 打包脚本）。
+历史上另有 C# WinForms 进阶版（分层窗口 + GDI+ 逐像素 alpha 实现光晕），
+未随本仓库发布；日常使用 Python 版已足够。
 
 ## 七、目录结构
 
 ```
 WinTop/
-├── WinTop.exe            ★ 单文件成品（免安装，双击即用）
-├── win_topmost.py        工具本体源码
+├── win_topmost.py        工具本体源码（配置在文件顶部 CONFIG）
+├── win.ico               程序图标
+├── gen_icon.py           图标生成脚本
+├── WinTop.spec           PyInstaller 打包配置
 ├── 启动WinTop.bat         源码版启动（需要 Python）
-├── 重新打包exe.bat        改完配置后一键重新打包 exe
 ├── 调试启动(带日志).bat    源码版带控制台排错
 ├── 安装开机自启.bat        写入 Startup 快捷方式
-├── 取消开机自启.bat        移除自启
-├── win.ico / gen_icon.py  程序图标及生成脚本
-├── selftest.py            自动化自检（支持测源码版 / exe 版）
-├── selftest_glow.png      自检截图：发光边框实拍
-├── _pyi/ + WinTop.spec    PyInstaller 本体与打包配置（重新打包用，可删）
-└── csharp/                C# WinForms 进阶版
-    ├── Program.cs
-    └── WinTop.csproj
+├── 取消开机自启.bat        移除 Startup 自启
+├── 取消计划任务自启.bat     移除计划任务自启
+└── 重新打包exe.bat        一键重新打包 WinTop.exe（需 pip 可联网）
 ```
+
+> 成品 `WinTop.exe` 与完整打包 `zip` 请在 **Releases** 页下载。
